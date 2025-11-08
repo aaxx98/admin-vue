@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import UiText from "../ui/UiText.vue";
 import InfoHeader from "./InfoHeader.vue";
 </script>
 
@@ -10,12 +11,23 @@ import InfoHeader from "./InfoHeader.vue";
       info="tailwindcss: font-size"
     />
     <div class="space-y-2">
-      <p class="text-4xl font-bold">Heading 1 - 4xl Bold</p>
-      <p class="text-3xl font-semibold">Heading 2 - 3xl SemiBold</p>
-      <p class="text-2xl font-medium">Heading 3 - 2xl Medium</p>
-      <p class="text-xl">Body Large - xl Regular</p>
-      <p class="text-base">Body Base - base Regular</p>
-      <p class="text-sm text-gray-600">Caption - sm Gray</p>
+      <UiText size="3xl" weight="semibold">Heading 1 - 3xl SemiBold</UiText>
+      <UiText size="2xl" weight="semibold">Heading 2 - 2xl SemiBold</UiText>
+      <UiText size="2xl" weight="medium">Heading 3 - 2xl Medium</UiText>
+      <UiText size="xl">Body Large - xl Regular</UiText>
+      <UiText size="base" weight="bold">Body Base - base Bold</UiText>
+      <UiText size="base" weight="semibold">Body Base - base SemiBold</UiText>
+      <UiText size="base" weight="medium">Body Base - base Medium</UiText>
+      <UiText size="base">Body Base - base Regular</UiText>
+      <UiText size="sm" color="text-gray-600">Caption - sm Gray</UiText>
+
+      <UiText size="sm" color="text-indigo-600"
+        >Body Base - sm indigo-600</UiText
+      >
+      <UiText size="sm" color="text-emerald-600"
+        >Body Base - sm emerald-600</UiText
+      >
+      <UiText size="sm" color="text-red-600">Body Base - sm red-600</UiText>
     </div>
   </section>
 </template>
