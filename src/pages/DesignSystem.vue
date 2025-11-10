@@ -6,6 +6,7 @@
     <Typography />
     <Buttons />
     <Cards />
+    <FormInput />
     <!-- Cards / Divs -->
   </div>
 </template>
@@ -14,5 +15,6 @@
 import Buttons from "../components/system/Buttons.vue";
 import Cards from "../components/system/Cards.vue";
 import Colors from "../components/system/Colors.vue";
+import FormInput from "../components/system/FormInput.vue";
 import Typography from "../components/system/Typography.vue";
 </script>
