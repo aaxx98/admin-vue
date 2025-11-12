@@ -55,6 +55,7 @@ const fetchData = async () => {
         page: page.value,
         pageSize: pageSize.value,
       },
+      withCredentials: true, // 쿠키 자동 전송
     });
 
     // API 응답에 맞춰 rows와 totalPages 설정

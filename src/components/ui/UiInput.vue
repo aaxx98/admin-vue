@@ -1,14 +1,22 @@
 <template>
-  <input
-    v-bind="$attrs"
-    :value="modelValue"
-    @input="
-      $emit('update:modelValue', ($event.target as HTMLInputElement).value)
-    "
-    :placeholder="placeholder"
-    :class="[computedClass, $attrs.class]"
-    :disabled="disabled"
-  />
+  <div class="flex flex-col">
+    <label v-if="label" class="mb-1 text-sm font-medium text-gray-700">
+      {{ label }} <span v-if="required" class="text-red-500">*</span>
+    </label>
+
+    <input
+      v-bind="$attrs"
+      :value="modelValue"
+      :required="required"
+      @input="
+        $emit('update:modelValue', ($event.target as HTMLInputElement).value)
+      "
+      :placeholder="placeholder"
+      :class="[computedClass, $attrs.class]"
+      :disabled="disabled"
+    />
+  </div>
+
   <p v-if="message" :class="messageClass" class="text-sm">
     {{ message }}
   </p>
@@ -18,12 +26,14 @@
 import { computed } from "vue";
 
 interface Props {
+  label?: string;
   modelValue?: string;
   placeholder?: string;
   size?: "sm" | "md" | "lg";
   state?: "default" | "valid" | "warning" | "error";
   message?: string;
   disabled?: boolean;
+  required?: boolean;
 }
 
 const props = defineProps<Props>();
