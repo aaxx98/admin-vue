@@ -1,6 +1,6 @@
 <template>
   <CommonTableWrapper
-    apiUrl="http://localhost:8080/api/stocks"
+    apiUrl="/api/stocks"
     :columns="[
       { key: 'productName', label: '상품명' },
       { key: 'quantity', label: '현재 재고' },

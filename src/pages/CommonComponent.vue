@@ -1,6 +1,6 @@
 <template>
   <CommonTableWrapper
-    apiUrl="http://localhost:8080/posts"
+    apiUrl="/posts"
     :columns="[
       { key: 'id', label: 'ID' },
       { key: 'title', label: '제목' },

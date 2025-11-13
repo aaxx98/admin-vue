@@ -55,7 +55,7 @@ const handleLogin = async () => {
   console.log("로그인 시도:", email.value, password.value);
   try {
     const res = await axios.post(
-      "http://localhost:8080/api/auth/login",
+      "/api/auth/login",
       {
         email: email.value,
         password: password.value,

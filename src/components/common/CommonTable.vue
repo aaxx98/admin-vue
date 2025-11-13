@@ -1,7 +1,7 @@
 <template>
   <div class="overflow-x-auto">
     <table class="min-w-full border border-gray-200 divide-y divide-gray-200">
-      <thead class="bg-gray-50">
+      <thead class="bg-indigo-50">
         <tr>
           <th
             v-for="col in columns"
@@ -20,7 +20,9 @@
             class="px-4 py-2 text-sm text-gray-700"
           >
             <slot :row="row" :col="col">
-              {{ row[col.key] }}
+              <span>
+                {{ row[col.key] }}
+              </span>
             </slot>
           </td>
         </tr>
@@ -30,9 +32,9 @@
 </template>
 
 <script setup lang="ts">
-interface Column {
-  key: string; // 데이터 키
-  label: string; // 컬럼 헤더
+export interface Column {
+  key: string;
+  label: string;
 }
 
 interface Props {

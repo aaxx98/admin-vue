@@ -24,7 +24,7 @@ const router = useRouter();
 
 const fetchUser = async () => {
   try {
-    const res = await axios.get("http://localhost:8080/api/auth/me", {
+    const res = await axios.get("/api/auth/me", {
       withCredentials: true,
     });
     user.value = res.data;

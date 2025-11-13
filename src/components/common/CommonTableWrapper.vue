@@ -2,14 +2,8 @@
   <div>
     <!-- 테이블 -->
     <CommonTable :columns="columns" :rows="rows">
-      <template #default="{ row, col }">
-        <!-- 이메일 컬럼은 링크, 나머지는 일반 텍스트 -->
-        <span v-if="col.key === 'email'">
-          <a :href="`mailto:${row[col.key]}`" class="text-indigo-500">{{
-            row[col.key]
-          }}</a>
-        </span>
-        <span v-else>{{ row[col.key] }}</span>
+      <template v-slot="slotProps">
+        <slot v-bind="slotProps" />
       </template>
     </CommonTable>
 
@@ -26,19 +20,15 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from "vue";
 import axios from "axios";
-import CommonTable from "@/components/common/CommonTable.vue";
+import CommonTable, { Column } from "@/components/common/CommonTable.vue";
 import CommonPagination from "@/components/common/CommonPagination.vue";
-
-interface Column {
-  key: string;
-  label: string;
-}
 
 interface Props {
   apiUrl: string;
   columns: Column[];
   initialPage?: number;
   initialPageSize?: number;
+  keyword?: String;
 }
 
 const props = defineProps<Props>();
@@ -54,6 +44,7 @@ const fetchData = async () => {
       params: {
         page: page.value,
         pageSize: pageSize.value,
+        keyword: props.keyword,
       },
       withCredentials: true, // 쿠키 자동 전송
     });
@@ -69,8 +60,18 @@ const fetchData = async () => {
   }
 };
 
+// keyword가 변경되면 1페이지로 리셋하고 데이터 fetch
+watch(
+  () => props.keyword,
+  () => {
+    page.value = 1;
+    fetchData();
+  }
+);
 // 페이지나 페이지 사이즈 변경 시 fetchData 호출
 watch([page, pageSize], fetchData);
 
 onMounted(fetchData);
+
+defineExpose({ fetchData });
 </script>

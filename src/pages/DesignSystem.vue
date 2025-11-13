@@ -7,14 +7,17 @@
     <Buttons />
     <Cards />
     <FormInput />
-    <!-- Cards / Divs -->
+    <Modal />
+    <Layout />
   </div>
 </template>
 
 <script setup>
+import Modal from "@/components/system/Modal.vue";
 import Buttons from "../components/system/Buttons.vue";
 import Cards from "../components/system/Cards.vue";
 import Colors from "../components/system/Colors.vue";
 import FormInput from "../components/system/FormInput.vue";
 import Typography from "../components/system/Typography.vue";
+import Layout from "@/components/system/Layout.vue";
 </script>
