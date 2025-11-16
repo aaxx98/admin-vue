@@ -4,6 +4,9 @@
       <UiText weight="semibold" size="lg">주문 정보</UiText>
     </div>
     <div class="grid grid-cols-2 gap-2">
+      <UiText class="col-span-2"
+        ><div>주문 일자: {{ orderData.order.orderDate }}</div>
+      </UiText>
       <UiText
         ><div>주문 번호: {{ orderData.order.id }}</div></UiText
       >
@@ -59,6 +62,7 @@ const orderData = reactive({
     id: 0,
     totalQuantity: 0,
     totalPrice: 0,
+    orderDate: "",
     status: "",
   },
   list: [] as any[],

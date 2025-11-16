@@ -1,5 +1,6 @@
 <template>
   <CommonTableWrapper
+    ref="tableRef"
     apiUrl="/api/products"
     :columns="[
       { key: 'id', label: 'ID' },
@@ -45,7 +46,7 @@ import UiButton from "@/components/ui/UiButton.vue";
 import UiModal from "@/components/ui/UiModal.vue";
 import UiText from "@/components/ui/UiText.vue";
 import axios from "axios";
-import { ref, watch } from "vue";
+import { defineExpose, ref, watch } from "vue";
 
 interface Props {
   keyword: String;
@@ -78,8 +79,14 @@ const deleteRow = async () => {
     });
 
     tableRef.value?.fetchData(); // 삭제 후 데이터 갱신
+    openDeleteModal(false);
   } catch (err) {
     console.error(err);
   }
 };
+
+const fetchTableData = () => {
+  tableRef.value?.fetchData();
+};
+defineExpose({ fetchTableData });
 </script>

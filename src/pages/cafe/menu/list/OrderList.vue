@@ -3,6 +3,7 @@
     apiUrl="/api/orders"
     :columns="[
       { key: 'id', label: 'ID' },
+      { key: 'orderDate', label: '주문 일자' },
       { key: 'status', label: '주문 상태' },
       { key: 'totalQuantity', label: '상품 개수' },
       { key: 'totalPrice', label: '가격 합계' },

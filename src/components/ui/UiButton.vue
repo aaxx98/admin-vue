@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 interface Props {
-  type?: "primary" | "secondary" | "ghost" | "danger";
+  type?: "primary" | "secondary" | "ghost" | "danger" | "custom";
   size?: "sm" | "md" | "lg";
   rounded?: "none" | "sm" | "md" | "lg" | "full";
   disabled?: boolean;
@@ -48,5 +48,6 @@ const typeClasses = {
   ghost:
     "bg-transparent text-indigo-500 hover:bg-indigo-100 focus:ring-indigo-200",
   danger: "bg-red-500 text-white hover:bg-red-600 focus:ring-red-400",
+  custom: "",
 };
 </script>

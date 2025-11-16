@@ -37,6 +37,7 @@ const rows = ref<any[]>([]);
 const page = ref(props.initialPage || 1);
 const pageSize = ref(props.initialPageSize || 20);
 const totalPages = ref(1);
+const data = ref<any[]>([]);
 
 const fetchData = async () => {
   try {
@@ -53,6 +54,7 @@ const fetchData = async () => {
     rows.value = res.data.list || [];
     totalPages.value = res.data.totalPages || 1;
     page.value = res.data.currentPage || page.value; // API가 현재 페이지를 반환하면 동기화
+    data.value = res.data.list || [];
   } catch (err) {
     console.error("API fetch error:", err);
     rows.value = [];
@@ -73,5 +75,8 @@ watch([page, pageSize], fetchData);
 
 onMounted(fetchData);
 
-defineExpose({ fetchData });
+defineExpose({
+  data,
+  fetchData,
+});
 </script>

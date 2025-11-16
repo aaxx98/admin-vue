@@ -5,7 +5,7 @@
       type="checkbox"
       :checked="modelValue"
       @change="
-        $emit('update:modelValue', ($event.target as HTMLInputElement).value)
+        $emit('update:modelValue', ($event.target as HTMLInputElement).checked)
       "
       :disabled="disabled"
       :class="[
@@ -13,7 +13,7 @@
         $attrs.class,
       ]"
     />
-    <span><slot /></span>
+    <span class="ml-2"><slot /></span>
   </label>
 </template>
 

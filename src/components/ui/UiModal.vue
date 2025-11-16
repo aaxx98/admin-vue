@@ -4,7 +4,10 @@
     class="fixed inset-0 flex items-center justify-center bg-black/20 z-50"
     @click="closeModal"
   >
-    <div class="bg-white rounded-2xl shadow-lg p-6 max-w-[90%]" @click.stop>
+    <div
+      class="bg-white rounded-2xl shadow-lg p-6 max-w-[90%] max-h-[90%]"
+      @click.stop
+    >
       <!-- 제목 -->
       <h2 v-if="title" class="text-lg font-semibold mb-4">{{ title }}</h2>
 
