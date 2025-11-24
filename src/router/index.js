@@ -3,6 +3,7 @@ import DesignSystem from "@/pages/DesignSystem.vue";
 import CommonComponent from "@/pages/CommonComponent.vue";
 import LoginPage from "../pages/cafe/LoginPage.vue";
 import SignupPage from "../pages/cafe/SignupPage.vue";
+import SignupSuccess from "../pages/cafe/SignupSuccess.vue";
 import CafeLayout from "../pages/cafe/menu/layout/CafeLayout.vue";
 import MainPage from "../pages/cafe/menu/MainPage.vue";
 import ProductPage from "../pages/cafe/menu/ProductPage.vue";
@@ -33,6 +34,11 @@ const routes = [
     path: "/signup",
     name: "CafeSignup",
     component: SignupPage,
+  },
+  {
+    path: "/signup-success",
+    name: "CafeSignupSuccess",
+    component: SignupSuccess,
   },
   {
     path: "/",

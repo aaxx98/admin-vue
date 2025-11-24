@@ -76,7 +76,7 @@ onMounted(() => {
 
 const fetchDetailData = async (orderId: number) => {
   try {
-    const res = await axios.get(`http://localhost:8080/api/items/${orderId}`, {
+    const res = await axios.get(`/api/items/${orderId}`, {
       withCredentials: true,
     });
 
