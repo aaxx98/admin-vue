@@ -62,7 +62,7 @@
 
 <script setup lang="ts">
 import CommonTableWrapper from "@/components/common/CommonTableWrapper.vue";
-import axios from "axios";
+import { deleteOrder } from "@/api/orders";
 import { ref } from "vue";
 import UiButton from "@/components/ui/UiButton.vue";
 import UiModal from "@/components/ui/UiModal.vue";
@@ -89,9 +89,7 @@ const openShowModal = (isOpen: boolean, id?: number) => {
 
 const deleteRow = async () => {
   try {
-    await axios.delete(`/api/orders/${dataId.value}`, {
-      withCredentials: true,
-    });
+    await deleteOrder(dataId.value);
 
     tableRef.value?.fetchData(); // 삭제 후 데이터 갱신
     openDeleteModal(false);

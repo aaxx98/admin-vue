@@ -36,12 +36,10 @@ const openModal = () => {
 };
 
 const handleConfirm = () => {
-  console.log("확인 눌림");
   isModalVisible.value = false; // 모달 닫기
 };
 
 const handleCancel = () => {
-  console.log("취소 눌림");
   isModalVisible.value = false; // 모달 닫기
 };
 </script>

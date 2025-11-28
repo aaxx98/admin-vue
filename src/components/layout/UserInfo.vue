@@ -12,8 +12,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import axios from "axios";
 import UiButton from "../ui/UiButton.vue";
+import { fetchCurrentUser } from "@/api/auth";
 
 interface User {
   name: string;
@@ -24,13 +24,10 @@ const router = useRouter();
 
 const fetchUser = async () => {
   try {
-    const res = await axios.get("/api/auth/me", {
-      withCredentials: true,
-    });
+    const res = await fetchCurrentUser();
     user.value = res.data;
   } catch (err: any) {
     if (err.response?.status === 401) {
-      console.log("로그인 필요 - 로그인 모달 띄우기 가능");
       // TODO: 로그인 모달 보여주는 로직
     } else {
       console.error("유저 정보 가져오기 실패:", err);

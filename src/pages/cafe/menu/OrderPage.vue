@@ -31,7 +31,7 @@ import UiButton from "@/components/ui/UiButton.vue";
 import UiModal from "@/components/ui/UiModal.vue";
 import NewOrderForm from "./form/NewOrderForm.vue";
 import { ref } from "vue";
-import axios from "axios";
+import { createOrder } from "@/api/orders";
 
 const newFormRef = ref();
 const listRef = ref();
@@ -42,19 +42,12 @@ const openNew = (isOpen: boolean) => {
 };
 
 const saveOrder = async () => {
-  console.log("저장", newFormRef.value.orderList);
   try {
-    await axios.post(
-      "/api/orders",
-      {
-        orderItems: newFormRef.value.orderList,
-      },
-      { withCredentials: true }
-    );
+    await createOrder(newFormRef.value.orderList);
     openNew(false);
     listRef.value?.fetchTableData();
   } catch (err: any) {
-    console.log(
+    console.error(
       "주문 생성 실패... ",
       err.response?.data?.message || err.message
     );

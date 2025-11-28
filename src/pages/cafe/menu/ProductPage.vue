@@ -42,7 +42,7 @@ import UiButton from "@/components/ui/UiButton.vue";
 import { ref } from "vue";
 import UiModal from "@/components/ui/UiModal.vue";
 import NewProductForm from "./form/NewProductForm.vue";
-import axios from "axios";
+import { createProduct } from "@/api/products";
 
 const inputStr = ref(""); // 입력 중인 검색어
 const keyword = ref(""); // 실제 검색에 사용되는 키워드
@@ -63,19 +63,14 @@ const reset = () => {
 };
 
 const saveProduct = async () => {
-  console.log("저장", newFormRef.value.form);
   try {
-    await axios.post(
-      "/api/products",
-      {
-        ...newFormRef.value.form,
-      },
-      { withCredentials: true }
-    );
+    await createProduct({
+      ...newFormRef.value.form,
+    });
     openNew(false);
     listRef.value?.fetchTableData();
   } catch (err: any) {
-    console.log(
+    console.error(
       "상품 생성 실패... ",
       err.response?.data?.message || err.message
     );

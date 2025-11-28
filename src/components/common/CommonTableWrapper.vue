@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { ref, watch, onMounted } from "vue";
-import axios from "axios";
+import { fetchListData } from "@/api/common";
 import CommonTable, { Column } from "@/components/common/CommonTable.vue";
 import CommonPagination from "@/components/common/CommonPagination.vue";
 
@@ -41,13 +41,10 @@ const data = ref<any[]>([]);
 
 const fetchData = async () => {
   try {
-    const res = await axios.get(props.apiUrl, {
-      params: {
-        page: page.value,
-        pageSize: pageSize.value,
-        keyword: props.keyword,
-      },
-      withCredentials: true, // 쿠키 자동 전송
+    const res = await fetchListData(props.apiUrl, {
+      page: page.value,
+      pageSize: pageSize.value,
+      keyword: props.keyword,
     });
 
     // API 응답에 맞춰 rows와 totalPages 설정

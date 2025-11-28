@@ -55,8 +55,8 @@ import Logo from "@/components/layout/Logo.vue";
 import UiButton from "@/components/ui/UiButton.vue";
 import UiInput from "@/components/ui/UiInput.vue";
 import UiText from "@/components/ui/UiText.vue";
-import axios from "axios";
 import { useRouter } from "vue-router";
+import { registerUser } from "@/api/auth";
 
 const router = useRouter();
 
@@ -67,17 +67,12 @@ const form = reactive({
 });
 
 const handleSignup = async () => {
-  console.log("회원가입 요청:", form.email, form.name, form.password);
   try {
-    const res = await axios.post(
-      "/api/user/register",
-      {
-        email: form.email,
-        name: form.name,
-        password: form.password,
-      },
-      { withCredentials: true }
-    );
+    await registerUser({
+      email: form.email,
+      name: form.name,
+      password: form.password,
+    });
     router.push("/signup-success");
   } catch (err: any) {
     console.error("회원가입 실패:", err.response?.data?.message || err.message);
