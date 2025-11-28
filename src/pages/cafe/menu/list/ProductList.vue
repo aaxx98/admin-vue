@@ -45,7 +45,7 @@ import CommonTableWrapper from "@/components/common/CommonTableWrapper.vue";
 import UiButton from "@/components/ui/UiButton.vue";
 import UiModal from "@/components/ui/UiModal.vue";
 import UiText from "@/components/ui/UiText.vue";
-import axios from "axios";
+import { deleteProduct } from "@/api/products";
 import { defineExpose, ref, watch } from "vue";
 
 interface Props {
@@ -67,16 +67,13 @@ const infoData = ref<Record<string, any>>({});
 const openDeleteModal = (isOpen: boolean, rowData?: Record<string, any>) => {
   deleteOpen.value = isOpen;
   if (isOpen && rowData) {
-    console.log(rowData);
     infoData.value = rowData;
   }
 };
 
 const deleteRow = async () => {
   try {
-    await axios.delete(`/api/products/${infoData.value.id}`, {
-      withCredentials: true,
-    });
+    await deleteProduct(infoData.value.id);
 
     tableRef.value?.fetchData(); // 삭제 후 데이터 갱신
     openDeleteModal(false);

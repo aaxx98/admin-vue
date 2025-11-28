@@ -49,7 +49,7 @@
 <script setup lang="ts">
 import CommonTable from "@/components/common/CommonTable.vue";
 import UiText from "@/components/ui/UiText.vue";
-import axios from "axios";
+import { fetchOrderDetail } from "@/api/orders";
 import { onMounted, reactive, ref } from "vue";
 
 const props = defineProps({
@@ -76,9 +76,7 @@ onMounted(() => {
 
 const fetchDetailData = async (orderId: number) => {
   try {
-    const res = await axios.get(`/api/items/${orderId}`, {
-      withCredentials: true,
-    });
+    const res = await fetchOrderDetail(orderId);
 
     orderData.order = res.data.order;
     orderData.list = res.data.list;

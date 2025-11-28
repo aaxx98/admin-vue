@@ -40,11 +40,11 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import axios from "axios";
 import Logo from "@/components/layout/Logo.vue";
 import UiButton from "@/components/ui/UiButton.vue";
 import UiInput from "@/components/ui/UiInput.vue";
 import { useRouter } from "vue-router";
+import { loginUser } from "@/api/auth";
 
 const router = useRouter();
 
@@ -52,16 +52,11 @@ const email = ref("");
 const password = ref("");
 
 const handleLogin = async () => {
-  console.log("로그인 시도:", email.value, password.value);
   try {
-    const res = await axios.post(
-      "/api/auth/login",
-      {
-        email: email.value,
-        password: password.value,
-      },
-      { withCredentials: true }
-    );
+    await loginUser({
+      email: email.value,
+      password: password.value,
+    });
     router.push("/main");
   } catch (err: any) {
     console.error("로그인 실패:", err.response?.data?.message || err.message);
