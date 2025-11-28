@@ -49,16 +49,9 @@ import { deleteProduct } from "@/api/products";
 import { defineExpose, ref, watch } from "vue";
 
 interface Props {
-  keyword: String;
+  keyword: string;
 }
 const props = defineProps<Props>();
-
-watch(
-  () => props.keyword,
-  () => {
-    tableRef.value?.fetchData();
-  }
-);
 
 const tableRef = ref<InstanceType<typeof CommonTableWrapper>>();
 const deleteOpen = ref(false);
