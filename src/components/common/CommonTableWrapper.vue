@@ -28,7 +28,7 @@ interface Props {
   columns: Column[];
   initialPage?: number;
   initialPageSize?: number;
-  keyword?: String;
+  keyword?: string;
 }
 
 const props = defineProps<Props>();
@@ -65,7 +65,8 @@ watch(
   () => {
     page.value = 1;
     fetchData();
-  }
+  },
+  { immediate: false }
 );
 // 페이지나 페이지 사이즈 변경 시 fetchData 호출
 watch([page, pageSize], fetchData);
