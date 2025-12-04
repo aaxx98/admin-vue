@@ -24,3 +24,6 @@ export const registerUser = async (payload: RegisterPayload) =>
 
 export const fetchCurrentUser = async () =>
   axios.get<AuthUser>("/api/auth/me", { withCredentials: true });
+
+export const logoutUser = async () =>
+  axios.post("/api/auth/logout", {}, { withCredentials: true });
