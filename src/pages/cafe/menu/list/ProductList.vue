@@ -7,13 +7,17 @@
       { key: 'name', label: '상품명' },
       { key: 'category', label: '카테고리' },
       { key: 'price', label: '가격' },
+      { key: 'stockManage', label: '재고관리' },
       { key: 'edit', label: '수정' },
       { key: 'delete', label: '삭제' },
     ]"
     :keyword="props.keyword"
   >
     <template #default="{ row, col }">
-      <span v-if="col.key == 'edit'">
+      <span v-if="col.key == 'stockManage'">
+        <UiCheckbox v-model="row[col.key]" label="Disabled" :disabled="true" />
+      </span>
+      <span v-else-if="col.key == 'edit'">
         <UiButton size="sm" type="secondary" @click="openEditModal(true, row)">
           수정
         </UiButton>
@@ -62,8 +66,9 @@ import UiButton from "@/components/ui/UiButton.vue";
 import UiModal from "@/components/ui/UiModal.vue";
 import UiText from "@/components/ui/UiText.vue";
 import { deleteProduct, updateProduct } from "@/api/products";
-import { defineExpose, ref } from "vue";
+import { defineExpose, nextTick, ref } from "vue";
 import NewProductForm from "../form/NewProductForm.vue";
+import UiCheckbox from "@/components/ui/UiCheckbox.vue";
 
 interface Props {
   keyword: string;
@@ -83,10 +88,16 @@ const openDeleteModal = (isOpen: boolean, rowData?: Record<string, any>) => {
   }
 };
 
-const openEditModal = (isOpen: boolean, rowData?: Record<string, any>) => {
+const openEditModal = async (
+  isOpen: boolean,
+  rowData?: Record<string, any>
+) => {
   editOpen.value = isOpen;
   if (isOpen && rowData) {
     infoData.value = rowData;
+
+    await nextTick();
+
     editFormRef.value?.setFormValues({
       name: rowData.name,
       category: rowData.category,

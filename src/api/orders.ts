@@ -19,11 +19,8 @@ export const deleteOrder = (orderId: number | string) =>
 export const fetchOrderDetail = (orderId: number | string) =>
   axios.get(`/api/items/${orderId}`, { withCredentials: true });
 
-export const updateOrderStatus = (
-  orderId: number | string,
-  status: string
-) =>
-  axios.put(
+export const updateOrderStatus = (orderId: number | string, status: string) =>
+  axios.patch(
     `/api/orders/${orderId}/status`,
     { status },
     { withCredentials: true }
