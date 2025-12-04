@@ -10,7 +10,7 @@
       >주문 추가
     </UiButton>
   </div>
-  <OrderList />
+  <OrderList ref="listRef" />
   <UiModal
     :visible="isOpenNew"
     title="주문 추가"
