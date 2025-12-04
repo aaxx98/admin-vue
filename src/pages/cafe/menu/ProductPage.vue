@@ -52,6 +52,9 @@ const listRef = ref();
 const isOpenNew = ref(false);
 const openNew = (isOpen: boolean) => {
   isOpenNew.value = isOpen;
+  if (isOpen) {
+    newFormRef.value?.resetForm();
+  }
 };
 
 const searchProduct = () => {

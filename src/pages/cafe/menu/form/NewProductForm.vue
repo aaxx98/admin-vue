@@ -42,5 +42,16 @@ const form = reactive({
   stockManage: false,
 });
 
-defineExpose({ form });
+const setFormValues = (data: Partial<typeof form> = {}) => {
+  form.name = data.name || "";
+  form.category = data.category || "";
+  form.price = data.price?.toString() || "";
+  form.stockManage = Boolean(data.stockManage);
+};
+
+const resetForm = () => {
+  setFormValues();
+};
+
+defineExpose({ form, setFormValues, resetForm });
 </script>
