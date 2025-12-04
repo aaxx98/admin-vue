@@ -14,3 +14,13 @@ export const updateProduct = (
 
 export const deleteProduct = (productId: number | string) =>
   axios.delete(`/api/products/${productId}`, { withCredentials: true });
+
+export const updateProductStock = (
+  productId: number | string,
+  add: number
+) =>
+  axios.patch(
+    `/api/products/${productId}/stock`,
+    { add },
+    { withCredentials: true }
+  );
